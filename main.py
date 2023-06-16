@@ -37,7 +37,10 @@ def optimizationOne():
         P.add_constraint(c[i]*6 <= landAv[i] - 75)
 
     #Trucks constrains
-
+#Constrains
+    #Special constrains --> We tell the program that if we decide to build a center at location 'i', we must buy at least one truck
+    for i in range(15):
+        P.add_constraint(x[i] <= 1000*c[i])
 #Probando
     print(P)
     # P.solve()
