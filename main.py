@@ -45,7 +45,6 @@ def optimizationOne():
     for i in range(15):
         P.add_constraint(c[i]*6 <= landAv[i] - 75)
 
-
     # 3) Demand constrains --> Which trucks from each center can satisfy the demand of each
     dailyDemands = np.array([9,4,1,5,3,3,8])
     iterations = 15
@@ -82,7 +81,6 @@ def optimizationOne():
     # print(counts)
 
     # plt.hist(unique_values.tolist(), bins = len(unique_values))
-
     # plt.xlabel('Total Costs (usd)')
     # plt.ylabel('Frequency')
     # plt.title('Frequency of each total cost')
