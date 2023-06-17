@@ -1,0 +1,22 @@
+# A incluir / corregir
+Analisis de sensibilidad
+Que pasa si las demandas cambian? --> Plantearlas como variables aleatorias 
+[9:48, 16/6/2023] Ale Cassera: o los tiempos
+[9:48, 16/6/2023] Ale Cassera: que pasa si ahora tengo mas capacidad de entregaar?
+[9:48, 16/6/2023] Ale Cassera: con mas camiones
+[9:49, 16/6/2023] Ale Cassera: Alguna aprte del problema le enchufamos alguna variable aleatoria
+[9:49, 16/6/2023] Ale Cassera: que pasa si las demandas tienen esta fluctuacion?
+
+
+
+#Dudas a Lucas
+
+1. Restricciones especiales
+2. Segunda restricciones de demanda --> Las que dicen sum()
+3. Restricciones de tiempo
+4. Es necesario mostrar que camiones estan atendiendo a que zonas?
+
+
+#Agregar
+1. Motos
+2. Talles mecanico que minimice las distancia entre los centros construidos
