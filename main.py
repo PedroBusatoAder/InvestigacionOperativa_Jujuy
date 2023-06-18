@@ -59,13 +59,13 @@ def optimizationOriginal():
             demand = np.random.poisson(lam = dailyDemand[i])
             newDemand.append(demand)
 
-        P.add_constraint((c[0] + c[1] + c[2] + c[3] + c[4] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[13] + c[14]) * 2 >= newDemand[0])
-        P.add_constraint((c[0] + c[1] + c[2] + c[7] + c[8] + c[9] + c[10]) * 2 >= newDemand[1])
-        P.add_constraint((c[2] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12]+ c[13]) * 2 >= newDemand[2])
-        P.add_constraint((c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] + c[14]) * 2 >= newDemand[3])
-        P.add_constraint((c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[10] + c[13] + c[14]) * 2 >= newDemand[4])
-        P.add_constraint((c[1] + c[2] + c[8] + c[9] + c[10]) * 2 >= newDemand[5])
-        P.add_constraint((c[2] + c[4] + c[5] + c[6] + c[7] + c[10] + c[11] + c[12] + c[13] + c[14]) * 2 >= newDemand[6])
+        P.add_constraint((c[0] + c[1] + c[2] + c[3] + c[4] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[13] + c[14]) * 2 >= dailyDemand[0])
+        P.add_constraint((c[0] + c[1] + c[2] + c[7] + c[8] + c[9] + c[10]) * 2 >= dailyDemand[1])
+        P.add_constraint((c[2] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12]+ c[13]) * 2 >= dailyDemand[2])
+        P.add_constraint((c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] + c[14]) * 2 >= dailyDemand[3])
+        P.add_constraint((c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[10] + c[13] + c[14]) * 2 >= dailyDemand[4])
+        P.add_constraint((c[1] + c[2] + c[8] + c[9] + c[10]) * 2 >= dailyDemand[5])
+        P.add_constraint((c[2] + c[4] + c[5] + c[6] + c[7] + c[10] + c[11] + c[12] + c[13] + c[14]) * 2 >= dailyDemand[6])
 
         #Es necesario?
         # P.add_constraint(sum(c)*2 >= sum(dailyDemands))
@@ -192,7 +192,7 @@ def optimizationCapacities():
     print(results)
 
 def main():
-    optimizationOriginal()
+    # optimizationOriginal()
     # optimizationMotos()
-    # optimizationCapacities()
+    optimizationCapacities()
 main()
