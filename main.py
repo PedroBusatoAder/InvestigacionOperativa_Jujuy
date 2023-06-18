@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from tabulate import tabulate
 
 
-#Define a separate value to print nicely our outputs :)
+#Define a separate function to print nicely our outputs :)
 def printValues(valueBuild, valueTrucks, valueMotos, solution): 
     table_data = []
     for i in range(15):
@@ -18,7 +18,7 @@ def printValues(valueBuild, valueTrucks, valueMotos, solution):
     print(tabulate(table_data, headers = headers, floatfmt=".0f"))
     print('The optimal value for this centers and amount of trucks is:', solution)
 
-def optimizationOriginal():
+def optimizationOriginal():                                        # Original problem with variable demand
     P = picos.Problem()
 
     x = picos.BinaryVariable('x', 15)                              # Each variable represents if we build or not on that region
@@ -67,10 +67,6 @@ def optimizationOriginal():
         P.add_constraint((c[1] + c[2] + c[8] + c[9] + c[10]) * 2 >= dailyDemand[5])
         P.add_constraint((c[2] + c[4] + c[5] + c[6] + c[7] + c[10] + c[11] + c[12] + c[13] + c[14]) * 2 >= dailyDemand[6])
 
-        #Es necesario?
-        # P.add_constraint(sum(c)*2 >= sum(dailyDemands))
-        # print(len(P.constraints))
-
         P.solve()
 
         totalCosts.append(int(P.value))
@@ -93,12 +89,12 @@ def optimizationOriginal():
 
     # plt.show()
 
-def optimizationMotos():
+def optimizationMotos():                                           # Problem with static demand and motorcycles
     P = picos.Problem()
 
     x = picos.BinaryVariable('x', 15)                              # Each variable represents if we build or not on that region
     c = picos.IntegerVariable('c', 15, lower = 0)                  # Amount of trucks we buy for each region --> Each with a price of $24.000
-    m = picos.IntegerVariable('m', 15, lower = 0)                  # Amount of motorcycles we buy for each region --> Each with a price of $10.000
+    m = picos.IntegerVariable('m', 15, lower = 0)                  # Amount of motorcycles we buy for each region --> Each with a price of $15.000
 
     #Cost per square meter in each of the regions
     costSq = np.array([520, 514, 518, 502, 498, 460, 413, 407, 375, 497, 420, 380, 490, 478, 466]) 
@@ -130,14 +126,11 @@ def optimizationMotos():
     P.add_constraint((c[1] + c[2] + c[8] + c[9] + c[10]) * 2 + m[1] + m[2] + m[8] + m[9] + m[10] >= dailyDemand[5])
     P.add_constraint((c[2] + c[4] + c[5] + c[6] + c[7] + c[10] + c[11] + c[12] + c[13] + c[14]) * 2 + m[2] + m[4] + m[5] + m[6] + m[7] + m[10] + m[11] + m[12] + m[13] + m[14] >= dailyDemand[6])
 
-    #Es necesario?
-    # P.add_constraint(sum(c)*2 >= sum(dailyDemands))
-
     P.solve()
 
     printValues(x,c,m,P.value)
-
-def optimizationCapacities():
+    
+def optimizationCapacities():                                      # Sensibility analysis with variable demand capacities for trucks and motorcycles
 
     P = picos.Problem()
 
@@ -192,7 +185,7 @@ def optimizationCapacities():
     print(results)
 
 def main():
-    # optimizationOriginal()
+    optimizationOriginal()
     # optimizationMotos()
-    optimizationCapacities()
+    # optimizationCapacities()
 main()
