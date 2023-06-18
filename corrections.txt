@@ -10,7 +10,6 @@ Que pasa si las demandas cambian? --> Plantearlas como variables aleatorias
 
 
 #Dudas a Lucas
-
 1. Restricciones especiales
 2. Segunda restricciones de demanda --> Las que dicen sum()
 3. Restricciones de tiempo
@@ -18,5 +17,12 @@ Que pasa si las demandas cambian? --> Plantearlas como variables aleatorias
 
 
 #Agregar
-1. Motos
+1. Motos 
 2. Talles mecanico que minimice las distancia entre los centros construidos
+
+
+
+#WARNING! 
+# Cuando hacemos los ciclos for para variar restricciones estamos agregando una atras de la otra! Formando asi mas de 100 restricciones que cumplir en algunos casos!
+# Creo que en optimizationOriginal() se resolvio adecuadamente!
+# Faltaria verlo bien en optimizationCapacities!!!!!!
