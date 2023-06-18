@@ -39,7 +39,7 @@ def optimizationOriginal():                                        # Original pr
 
 
     #Constrains
-    iterations = 3
+    iterations = 15
     totalCosts = []
     dailyDemand = np.array([9,4,1,5,3,3,8])
 
@@ -59,35 +59,32 @@ def optimizationOriginal():                                        # Original pr
             demand = np.random.poisson(lam = dailyDemand[i])
             newDemand.append(demand)
 
-        P.add_constraint((c[0] + c[1] + c[2] + c[3] + c[4] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[13] + c[14]) * 2 >= dailyDemand[0])
-        P.add_constraint((c[0] + c[1] + c[2] + c[7] + c[8] + c[9] + c[10]) * 2 >= dailyDemand[1])
-        P.add_constraint((c[2] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12]+ c[13]) * 2 >= dailyDemand[2])
-        P.add_constraint((c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] + c[14]) * 2 >= dailyDemand[3])
-        P.add_constraint((c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[10] + c[13] + c[14]) * 2 >= dailyDemand[4])
-        P.add_constraint((c[1] + c[2] + c[8] + c[9] + c[10]) * 2 >= dailyDemand[5])
-        P.add_constraint((c[2] + c[4] + c[5] + c[6] + c[7] + c[10] + c[11] + c[12] + c[13] + c[14]) * 2 >= dailyDemand[6])
+        P.add_constraint((c[0] + c[1] + c[2] + c[3] + c[4] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[13] + c[14]) * 2 >= newDemand[0])
+        P.add_constraint((c[0] + c[1] + c[2] + c[7] + c[8] + c[9] + c[10]) * 2 >= newDemand[1])
+        P.add_constraint((c[2] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12]+ c[13]) * 2 >= newDemand[2])
+        P.add_constraint((c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] + c[14]) * 2 >= newDemand[3])
+        P.add_constraint((c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[10] + c[13] + c[14]) * 2 >= newDemand[4])
+        P.add_constraint((c[1] + c[2] + c[8] + c[9] + c[10]) * 2 >= newDemand[5])
+        P.add_constraint((c[2] + c[4] + c[5] + c[6] + c[7] + c[10] + c[11] + c[12] + c[13] + c[14]) * 2 >= newDemand[6])
 
         P.solve()
 
         totalCosts.append(int(P.value))
-        printValues(x,c,[],P.value)
+        # printValues(x,c,[],P.value)
 
         P.remove_all_constraints()                                      #Every time we solve our problem we restart our constraints to avoid them accumulating!
 
     print(totalCosts)
 
-    # Struggling to represent the data
-    # # Get the unique values and their counts
-    # unique_values, counts = np.unique(totalCosts, return_counts = True)
-    # print(unique_values)
-    # print(counts)
+    unique_values, counts = np.unique(totalCosts, return_counts = True)
 
-    # plt.hist(unique_values.tolist(), bins = len(unique_values))
-    # plt.xlabel('Total Costs (usd)')
-    # plt.ylabel('Frequency')
-    # plt.title('Frequency of each total cost')
+    plt.bar(range(len(unique_values)), counts)
+    plt.xticks(range(len(unique_values)), unique_values, rotation = 'vertical')
 
-    # plt.show()
+    plt.xlabel('Total Costs (USD)')
+    plt.ylabel('Frequency')
+    plt.title('Frequency of Each Total Cost')
+    plt.show()
 
 def optimizationMotos():                                           # Problem with static demand and motorcycles
     P = picos.Problem()
