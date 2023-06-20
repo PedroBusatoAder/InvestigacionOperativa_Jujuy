@@ -168,7 +168,7 @@ def optimizationCapacities():                                      # Sensibility
             P.add_constraint( (c[2] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12]+ c[13]) * truckCapacities[k] + (m[2] + m[7] + m[8] + m[9] + m[10] + m[11] + m[12]+ m[13]) * motorcycleCapacities[j] >= dailyDemand[2])
             P.add_constraint( (c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] + c[14]) * truckCapacities[k] + (m[1] + m[2] + m[3] + m[4] + m[5] + m[6] + m[7] + m[8] + m[9] + m[10] + m[11] + m[12] + m[13] + m[14]) * motorcycleCapacities[j] >= dailyDemand[3])
             P.add_constraint( (c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[10] + c[13] + c[14]) * truckCapacities[k] + (m[1] + m[2] + m[3] + m[4] + m[5] + m[6] + m[7] + m[10] + m[13] + m[14]) * motorcycleCapacities[j] >= dailyDemand[4])
-            P.add_constraint( (c[1] + c[2] + c[8] + c[9] + c[10]) * truckCapacities[k] + (m[1] + m[2] + m[8] + m[9] + m[10]) * motorcycleCapacities >= dailyDemand[5])
+            P.add_constraint( (c[1] + c[2] + c[8] + c[9] + c[10]) * truckCapacities[k] + (m[1] + m[2] + m[8] + m[9] + m[10]) * motorcycleCapacities[j] >= dailyDemand[5])
             P.add_constraint( (c[2] + c[4] + c[5] + c[6] + c[7] + c[10] + c[11] + c[12] + c[13] + c[14]) * truckCapacities[k] + (m[2] + m[4] + m[5] + m[6] + m[7] + m[10] + m[11] + m[12] + m[13] + m[14]) * motorcycleCapacities[j] >= dailyDemand[6])
             
             P.solve()
@@ -182,7 +182,7 @@ def optimizationCapacities():                                      # Sensibility
     print(results)
 
 def main():
-    optimizationOriginal()
+    # optimizationOriginal()
     # optimizationMotos()
-    # optimizationCapacities()
+    optimizationCapacities()
 main()
