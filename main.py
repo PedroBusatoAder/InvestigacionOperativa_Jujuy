@@ -32,11 +32,6 @@ def optimizationOriginal():                                        # Original pr
 
     #We set our objetive function --> We want to minimize it
     P.set_objective('min', ( costSq.T * x * 75 + costSq.T * c * 6 + sum(c)*24000 ))              
- 
-    #Formar un array con costos distintos para los camiones y mostrar como varian
-    np.linspace(1, 10)
-    np.arange(1,10,1) 
-
 
     #Constrains
     iterations = 15
